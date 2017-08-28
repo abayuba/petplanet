@@ -1,0 +1,12 @@
+<ion-view view-title="{{$root.Dict.SETTINGS_TITLE}}">
+	<ion-content class="settings" scroll="false">
+		<ion-list>
+			<ion-item class="item item-divider">
+				{{$root.Dict.SETTINGS_SUBTITLE}}
+			</ion-item>
+			<ion-radio class="item" ng-repeat="x in data" ng-click="setLang(x.code)" ng-model="lang" ng-value="x.code">
+				{{x.text}}
+			</ion-radio>
+		</ion-list>
+	</ion-content>
+</ion-view>

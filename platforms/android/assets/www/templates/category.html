@@ -1,0 +1,62 @@
+<ion-view view-title="{{title}}">
+	<ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+
+	<ion-content class="home" overflow-scroll="true" scroll-to-top="150" delegate-handle="scroller">
+		<ion-refresher
+            on-refresh="doRefresh()">
+        </ion-refresher>
+				<div class="row grid" ng-repeat="x in products track by $index" ng-if="$index%2==0">
+					<div class="col col-50 ink item" ng-if="$index < products.length" ui-sref="app.product({id: products[$index].id})">
+		                <div class="badge">
+		                    <span ng-if="!products[$index].in_stock" class="sold">Sold out</span>
+		                    <span ng-show="products[$index].regular_price > 0 && products[$index].on_sale" class="sale">
+		                        {{products[$index] | discount | number:0}}% OFF
+		                    </span>
+		                </div>
+
+		                <ion-spinner class="onload"></ion-spinner>
+
+		                <div class="img" style="background-image: url({{products[$index].featured_src ? products[$index].featured_src : 'img/product.png'}})"></div>
+		                <div class="info">
+		                    <h3>{{products[$index].title}}</h3>
+												<span ng-bind-html="products[$index].price | currency:format:decimal"></span>
+		                    <del ng-show="products[$index].regular_price > 0 && products[$index].on_sale" ng-bind-html="products[$index].regular_price | currency:format:decimal"></del>
+					    		</div>
+		            </div>
+									<div class="col col-50 ink item" ng-if="$index+1 < products.length" ui-sref="app.product({id: products[$index+1].id})">
+		                <div class="badge">
+		                    <span ng-if="!products[$index+1].in_stock" class="sold">Sold out</span>
+		                    <span ng-show="products[$index+1].regular_price > 0 && products[$index+1].on_sale" class="sale">
+		                        {{products[$index+1] | discount | number:0}}% OFF
+		                    </span>
+		                </div>
+
+		                <ion-spinner class="onload"></ion-spinner>
+
+		                <div class="img" style="background-image: url({{products[$index+1].featured_src ? products[$index+1].featured_src : 'img/product.png'}})"></div>
+		                <div class="info">
+		                    <h3 ng-bind-html="products[$index+1].title"></h3>
+												<span ng-bind-html="products[$index+1].price | currency:format:decimal"></span>
+												<del ng-show="products[$index+1].regular_price > 0 && products[$index+1].on_sale" ng-bind-html="products[$index+1].regular_price | currency:format:decimal"></del>
+		                </div>
+		            </div>
+				</div>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="more"></ion-infinite-scroll>
+	</ion-content>
+    <scroll-to-top-button animate="true">
+        <div class="float-button">
+            <span class="height-fix">
+                <a class="content">
+                    <i class="ion-ios-arrow-up"> </i>
+                </a>
+            </span>
+        </div>
+    </scroll-to-top-button>
+</ion-view>

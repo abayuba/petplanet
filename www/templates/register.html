@@ -1,0 +1,62 @@
+<ion-view view-title="{{$root.Dict.TXT_CREATE_ACCOUNT}}">
+  
+  <ion-content class="signup padding">
+    <form ng-submit="doRegister(frm)" novalidate="" name="frm">
+
+    <div class="list">
+      <div class="item-md-label" ng-show="message">
+          <div class="label-danger">{{message}}</div>
+      </div>
+
+      <label class="item item-input item-floating-label"><a>INGRESE SU NOMBRE</a>
+        <input type="text" autocomplete="off" class="form-control" placeholder="{{$root.Dict.TXT_FIRSTNAME}}" ng-model='u.first_name'>
+      </label>
+      <label class="item item-input item-floating-label"><a>INGRESE SU APELLIDOS</a>
+        <input type="text" autocomplete="off" class="form-control" placeholder="{{$root.Dict.TXT_LASTNAME}}" ng-model='u.last_name'>
+      </label>
+
+      <label class="item item-input item-floating-label"><a>INGRESE SU NOMBRE DE USARIO</a>
+        <input type="text" class="form-control" placeholder="{{$root.Dict.TXT_USERNAME}}" id="username" ng-pattern="/^[a-zA-Z0-9]*$/" required ng-model='u.username'>      
+        <label for="username" class="control-label text-danger" ng-show="u.username.length<5 && u.username!=''">
+          <i class="icon ion-alert"></i>
+          {{$root.Dict.TXT_USERNAME}} {{$root.Dict.TXT_MUST_5_CHARACTERS}}
+        </label>
+        <label for="username" class="control-label text-danger" ng-show="frm.username.$invalid && u.username!=''">
+          <i class="icon ion-alert"></i>
+          {{$root.Dict.TXT_USERNAME}} {{$root.Dict.TXT_MUST_ALPHA}}</label>
+        </label>        
+   
+
+      <label class="item item-input item-floating-label"><a>INGRESE SU EMAIL</a>
+        <input type="email" autocomplete="off" class="form-control" name="email" placeholder="{{$root.Dict.TXT_EMAIL}}" required ng-model='u.email'>        
+        <label for="email" class="control-label text-danger" ng-show="frm.email.$invalid && u.email!=''">
+          <i class="icon ion-alert"></i>
+          {{$root.Dict.TXT_EMAIL}} {{$root.Dict.TXT_INVALID}}</label>
+      </label> 
+
+      <label class="item item-input item-floating-label"><a>INGRESE LA CONTRASEÑA</a>
+        <input type="password" class="form-control" required id="pass" placeholder="Password" ng-model='u.pass'>
+        <label for="pass" class="control-label text-danger" ng-show="u.pass.length<6 && u.pass!='' && u.pass!=null">
+          <i class="icon ion-alert"></i>
+          {{$root.Dict.TXT_PASSWORD}} must be >= 6 characters
+        </label>
+      </label>
+
+      <label class="item item-input item-floating-label"><a>REPITA LA CONTRASEÑA</a>
+        <input type="password" class="form-control" required id="repassword" placeholder="Confirm Password" ng-model='pass2'>
+        <label for="repassword" class="control-label text-danger" ng-show="u.pass!=pass2 && pass2 !='' && pass2!=null">
+          <i class="icon ion-alert"></i>
+          {{$root.Dict.TXT_PASSWORD}} {{$root.Dict.TXT_NOTMATCH}}
+        </label>
+      </label>           
+
+   
+    <div class="padding">
+        <button class="button button-full button-energized round ink" ng-disabled="frm.$invalid || u.username.length<5 || u.pass.length<6 || u.pass!=pass2">{{$root.Dict.TXT_CREATE_ACCOUNT}}</button>
+    </div>
+		</div>
+  
+    </form>  
+  </ion-content>
+
+</ion-view>

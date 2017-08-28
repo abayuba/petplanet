@@ -1,0 +1,147 @@
+<ion-view view-title="Order #{{id}}">
+    <ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+	<ion-content class="checkout">
+		<div class="item item-divider">
+		  {{$root.Dict.CONFIRM_SUMMARY}}
+		</div>
+		<div class="padding">
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_STATUS}}</span>
+                    <span class="pull-right">
+                        {{order.status}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_PAYMENT_METHOD}}</span>
+                    <span class="pull-right">
+                        {{order.payment_details.method_title}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_SHIPPING_METHOD}}</span>
+                    <span class="pull-right" ng-bind-html="order.shipping_lines[0].method_title">
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.CONFIRM_SHIPCOST}}</span>
+                    <span class="pull-right" ng-bind-html="order.shipping_lines[0].total | currency:format:decimal"></span>
+                </div>
+            </label>
+            <label ng-if="order.note" class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_NOTE}}</span>
+                    <span class="pull-right">
+                        {{order.note}}
+                    </span>
+                </div>
+            </label>
+            
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_SUBTOTAL}}</span>
+                    <span class="pull-right" ng-bind-html="order.subtotal | currency:format:decimal"></span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right" ng-if="order.coupon_lines[0].amount">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_COUPON_DISC}}</span>
+                    <span class="pull-right">(<span ng-bind-html="order.coupon_lines[0].amount | currency:format:decimal"></span>)</span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_TOTAL}}</span>
+                    <span class="pull-right" ng-bind-html="order.total | currency:format:decimal"></span>
+                </div>
+            </label>
+        </div>
+        <div class="item item-divider">
+           {{$root.Dict.CHECKOUT_SHIPPING_ADDRESS}}
+        </div>
+        <div class="padding">
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_FIRSTNAME}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.first_name}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_LASTNAME}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.last_name}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>Country</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.country}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_STREET}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.address_1}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_TOWN}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.city}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_STATE}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.state}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>{{$root.Dict.TXT_ZIP}}</span>
+                    <span class="pull-right">
+                        {{order.shipping_address.postcode}}
+                    </span>
+                </div>
+            </label>
+        </div>
+        <div class="item item-divider">
+		   LINE ITEMS
+		</div>
+		<ion-list class="cart">
+            <ion-item ng-repeat="x in order.line_items track by $index" class="item">
+                <div class="cart-detail">
+                    <h2>{{x.name}}</h2>
+                    <span ng-if="x.meta[0].key">{{x.meta[0].label}}: {{x.meta[0].value}}</span>
+                    <div class="price" ng-bind-html="(x.quantity * x.price) | currency:format:decimal"></div>
+                    <h3>Qty: {{x.quantity}} items</h3>
+                </div>
+            </ion-item>
+        </ion-list>
+	</ion-content>
+</ion-view>

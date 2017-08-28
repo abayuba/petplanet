@@ -1,0 +1,63 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.razorpay.cordova": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-apprate": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "XWALK_VERSION": "21+",
+            "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+            "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+            "XWALK_MODE": "embedded",
+            "XWALK_MULTIPLEAPK": "true",
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "ionstore.ionicpremium.app"
+        }
+    }
+}

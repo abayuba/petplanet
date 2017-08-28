@@ -1,0 +1,46 @@
+<ion-modal-view view-title="{{$root.Dict.TXT_LOGIN}}">
+  <div class="bar bar-header bar-dark item-input-inset padding">
+    <span class="icon ion-close-round" ng-click="closeModal()"></span>
+    <div class="title" align-title="center">
+      {{$root.Dict.TXT_LOGIN}}
+    </div>   
+  </div>
+  <ion-content class="has-header login-bg">
+  	<div class="hero">
+        <div class="content no-header">
+            <span class="logo"></span>
+        </div>
+    </div>
+    <form ng-submit="doLogin(frm)" novalidate="" name="frm">
+      <div class="list">
+          <div class="item-md-label" ng-show="message">
+              <div class="label-danger">{{message}}</div>
+          </div>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">{{$root.Dict.TXT_USERNAME}}</span>
+              <input type="text" placeholder="{{$root.Dict.TXT_USERNAME}}" ng-model="u.user" required>
+          </label>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">{{$root.Dict.TXT_PASSWORD}}</span>
+              <input type="password" placeholder="{{$root.Dict.TXT_PASSWORD}}" ng-model="u.pass" required>
+          </label>
+
+          <label class="item-input item-md-label">
+            <button class="button button-full button-light ink round" ng-disabled="frm.$invalid">{{$root.Dict.TXT_LOGIN}}</button>
+          </label>
+
+          <div class="padding">
+            <div class="divider">
+              <div class="line left"></div>
+              <div class="line right"></div>
+              <div class="text">{{$root.Dict.TXT_OR}}</div>
+            </div>
+          </div>
+
+          <label class="item-input item-md-label">
+            <button ng-click="closeModal()" ui-sref="app.register" class="button button-full button-energized ink round">{{$root.Dict.TXT_CREATE_ACCOUNT}}</button>
+          </label>
+      </div>
+    </form>
+  </ion-content>  
+</ion-modal-view>

@@ -1,0 +1,83 @@
+<ion-view view-title="{{$root.Dict.EDIT_BILLING_TITLE}}">  
+  <ion-content class="padding" scroll="">  
+  <form ng-submit="doUpdate(frm)" novalidate="" name="frm">
+    <div class="list padding checkout">
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="first_name" placeholder="{{$root.Dict.TXT_FIRSTNAME}}" required ng-model="u.first_name">
+              <label class="control-label text-danger" ng-show="frm.first_name.$invalid && u.first_name!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_FIRSTNAME}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="last_name" placeholder="{{$root.Dict.TXT_LASTNAME}}" required ng-model="u.last_name">
+              <label class="control-label text-danger" ng-show="frm.last_name.$invalid && u.last_name!=''">
+                <i class="icon ion-alert"></i>
+               {{$root.Dict.TXT_LASTNAME}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+          
+          <label class="item item-input item-floating-label">
+              <input type="email" autocomplete="off" class="form-control" name="email" placeholder="{{$root.Dict.TXT_EMAIL}}" required ng-model="u.email">
+              <label for="email" class="control-label text-danger" ng-show="frm.email.$invalid && u.email!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_EMAIL}} {{$root.Dict.TXT_INVALID}}
+              </label>
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="phone" placeholder="{{$root.Dict.TXT_PHONE}}" required ng-model="u.phone">
+              <label for="phone" class="control-label text-danger" ng-show="frm.phone.$invalid && u.phone!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_PHONE}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+          <label ng-click="showCountry()" class="item item-input item-floating-label item-icon-right">
+              <div class="form-control">
+                  <span ng-show="!u.country">{{$root.Dict.TXT_COUNTRY}}</span>
+                  <span ng-show="u.country">
+                      {{tmp.country}}
+                  </span>
+                  <i class="icon ion-ios-arrow-forward"></i>
+              </div>
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="address_1" placeholder="{{$root.Dict.TXT_STREET}}" required ng-model="u.address_1">
+              <label class="control-label text-danger" ng-show="frm.address_1.$invalid && u.address_1!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_STREET}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="address_2" placeholder="Apartment, suit, unit etc. (optional)" ng-model="u.address_2">
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="city" placeholder="{{$root.Dict.TXT_TOWN}}" required ng-model="u.city">
+              <label class="control-label text-danger" ng-show="frm.city.$invalid && u.city!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_TOWN}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="state" placeholder="{{$root.Dict.TXT_STATE}}" required ng-model="u.state">
+              <label class="control-label text-danger" ng-show="frm.state.$invalid && u.state!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_STATE}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+
+          <label class="item item-input item-floating-label">
+              <input type="text" autocomplete="off" class="form-control" name="postcode" placeholder="{{$root.Dict.TXT_ZIPCODE}}" required ng-model="u.postcode">
+              <label for="postcode" class="control-label text-danger" ng-show="frm.postcode.$invalid && u.postcode!=''">
+                <i class="icon ion-alert"></i>
+                {{$root.Dict.TXT_ZIPCODE}} {{$root.Dict.TXT_CANT_EMPTY}}
+              </label>
+          </label>
+        
+    </div>
+    <label class="">
+      <button class="button button-full button-balanced ink round" ng-disabled="frm.$invalid">{{$root.Dict.TXT_SAVE}}</button>
+    </label>
+  </form> 
+      
+  </ion-content>
+</ion-view>

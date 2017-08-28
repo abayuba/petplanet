@@ -1,0 +1,24 @@
+<ion-view view-title="{{$root.Dict.ABOUT_TITLE}}">
+  <ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+  <ion-content class="about" scroll="true">
+  	  <h1>Veterinaria La Cruz</h1>
+	  <IMG SRC="..\img\logo.png">
+		  
+	  <p>Es brindar un servicio veterinario de excelencia complementado con un área comercial que cubra íntegramente las necesidades de las mascotas y sus propietarios.
+		  .</p>	 
+      <h3>Innovación</h3>
+	  <p>Buscamos la innovación permanente y procuramos actualizarnos en forma continúa a modo de adecuar nuestros servicios a las necesidades de nuestros queridos animales.</p>
+		
+	  <a href="tel:+59825149272" class="button button-positive">Llamar ahora</a>
+	 
+	  <!--<a href="mailto:info@arloygonzalez.com">info@arloygonzalez.com</a>-->
+    
+  </ion-content>
+</ion-view>

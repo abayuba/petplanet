@@ -1,0 +1,35 @@
+<ion-view view-title="{{$root.Dict.ACCOUNT_TITLE}}">
+  
+  <ion-content class="padding checkout myaccount">
+    <div class="account" ng-if="data">
+      <div class="photo">
+        <ion-spinner class="onload"></ion-spinner>
+        <div class="img" style="background-image: url(img/user.png)"></div>
+      </div>
+      <div class="data">
+        <div><b>{{data.first_name}} {{data.last_name}}</b> ({{data.username}})</div>
+        <div>{{data.email}}</div>
+      </div>
+      <div class="data pull-right" ui-sref="app.editaccount"> 
+        <i class="icon ion-edit"></i>
+      </div>
+    </div>
+
+    <label ng-if="data" class="item item-input item-floating-label item-icon-left item-icon-right" ui-sref="app.editbilling">
+      <div class="form-control">
+          <i class="icon ion-android-document"></i>
+          {{$root.Dict.ACCOUNT_BILLING}}
+          <i class="icon ion-ios-arrow-right"></i>
+      </div>        
+    </label>
+    <label ng-if="data" class="item item-input item-floating-label item-icon-left item-icon-right" ui-sref="app.editshipping">
+      <div class="form-control">
+          <i class="icon ion-android-drafts"></i>
+          {{$root.Dict.ACCOUNT_SHIPPING}}
+          <i class="icon ion-ios-arrow-right"></i>
+      </div>        
+    </label>
+
+      
+  </ion-content>
+</ion-view>

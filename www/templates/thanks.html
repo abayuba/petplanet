@@ -1,0 +1,11 @@
+<ion-view view-title="{{$root.Dict.THANKS_TITLE}}">
+	<ion-content class="padding thanks">
+        <span class="fa fa-thumbs-up fa-6"></span>
+        <h4 ng-bind-html="$root.Dict.THANKS_SUCCESS"></h4>
+        <p align="center">{{$root.Dict.THANKS_ID_ORDER}} <b>#{{id}}.</b><br>{{$root.Dict.THANKS_TOTAL_ORDER}} <b ng-bind-html="total | currency:format:decimal"></b>.</p>
+
+	<!--<p align="center">{{$root.Dict.THANKS_PAID}} <b>{{payment}}</b>.</p>-->
+        
+        <p><br><button class="button button-dark round" ui-sref="app.orders">{{$root.Dict.THANKS_GOTO}}</button></p>
+	</ion-content>
+</ion-view>

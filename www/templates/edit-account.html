@@ -1,0 +1,30 @@
+<ion-view view-title="{{$root.Dict.EDIT_ACCOUNT_TITLE}}">
+  
+  <ion-content class="padding" scroll="false">
+  
+  <form ng-submit="doUpdate(frm)" novalidate="" name="frm">
+    <div class="list padding">
+        <div class="item-md-label" ng-show="message">
+            <div class="label-danger">{{message}}</div>
+        </div>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">{{$root.Dict.TXT_FIRSTNAME}}</span>
+            <input type="text" placeholder="{{$root.Dict.TXT_FIRSTNAME}}" ng-model="u.first_name">
+        </label>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">{{$root.Dict.TXT_LASTNAME}}</span>
+            <input type="text" placeholder="{{$root.Dict.TXT_LASTNAME}}" ng-model="u.last_name">
+        </label>
+        <label class="item item-input item-floating-label">
+            <span class="input-label">{{$root.Dict.TXT_EMAIL}}</span>
+            <input type="email" placeholder="{{$root.Dict.TXT_EMAIL}" ng-model="u.email" required>
+        </label>
+        
+    </div>
+    <label class="">
+      <button class="button button-full button-balanced ink round" ng-disabled="frm.$invalid">{{$root.Dict.TXT_SAVE}}</button>
+    </label>
+  </form> 
+      
+  </ion-content>
+</ion-view>

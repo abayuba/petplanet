@@ -239,16 +239,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.services', 'ngCordova', 
       }
     })
 
-  .state('app.wish', {
-    cache: false,
-        url: '/wish',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/wish.html',
-            controller: 'WishCtrl'
-          }
-        }
-      })
+ 
 
   .state('app.blog', {
       url: '/blog',

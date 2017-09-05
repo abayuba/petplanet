@@ -30,20 +30,7 @@ var app = {
   // Enable to debug issues.
   // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
   
-  var notificationOpenedCallback = function(jsonData) {
-    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
 
-  window.plugins.OneSignal
-    .startInit("eeccdba2-4f8e-49f0-b067-972e83688bf9")
-    .handleNotificationOpened(notificationOpenedCallback)
-    .endInit();
-  
-  // Call syncHashedEmail anywhere in your app if you have the user's email.
-  // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
-  // window.plugins.OneSignal.syncHashedEmail(userEmail);
-}, false);
-    },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'

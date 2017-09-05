@@ -23,6 +23,7 @@ angular.module('app')
 GCM_SenderID                        : '760671275981', // Get this from https://console.developers.google.com
 OneSignalAppID                      : 'c86f7c5d-05b7-4afb-9f9f-3528d97791c3', // Get this from https://onesignal.com
 
+
                                         // Change this Paypal Sandbox and LIVE with yours
  
 })

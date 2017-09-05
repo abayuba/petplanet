@@ -15,7 +15,7 @@
         <input type="text" autocomplete="off" class="form-control" placeholder="{{$root.Dict.TXT_LASTNAME}}" ng-model='u.last_name'>
       </label>
 
-      <label class="item item-input item-floating-label"><a>INGRESE SU NOMBRE DE USARIO</a>
+      <label class="item item-input item-floating-label"><a>INGRESE SU NOMBRE DE USUARIO</a>
         <input type="text" class="form-control" placeholder="{{$root.Dict.TXT_USERNAME}}" id="username" ng-pattern="/^[a-zA-Z0-9]*$/" required ng-model='u.username'>      
         <label for="username" class="control-label text-danger" ng-show="u.username.length<5 && u.username!=''">
           <i class="icon ion-alert"></i>
@@ -35,7 +35,7 @@
       </label> 
 
       <label class="item item-input item-floating-label"><a>INGRESE LA CONTRASEÑA</a>
-        <input type="password" class="form-control" required id="pass" placeholder="Password" ng-model='u.pass'>
+        <input type="password" class="form-control" required id="pass" placeholder="Contraseña" ng-model='u.pass'>
         <label for="pass" class="control-label text-danger" ng-show="u.pass.length<6 && u.pass!='' && u.pass!=null">
           <i class="icon ion-alert"></i>
           {{$root.Dict.TXT_PASSWORD}} must be >= 6 characters
@@ -43,7 +43,7 @@
       </label>
 
       <label class="item item-input item-floating-label"><a>REPITA LA CONTRASEÑA</a>
-        <input type="password" class="form-control" required id="repassword" placeholder="Confirm Password" ng-model='pass2'>
+        <input type="password" class="form-control" required id="repassword" placeholder="Confirme la contraseña" ng-model='pass2'>
         <label for="repassword" class="control-label text-danger" ng-show="u.pass!=pass2 && pass2 !='' && pass2!=null">
           <i class="icon ion-alert"></i>
           {{$root.Dict.TXT_PASSWORD}} {{$root.Dict.TXT_NOTMATCH}}

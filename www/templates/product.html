@@ -1,7 +1,7 @@
 <ion-view view-title="{{$root.Dict.PRODUCT_TITLE}}">
 	<ion-nav-buttons side="right">
 		<div class="ink">
-			<button class="button ink button-icon button-clear ion-ios-heart{{isWishlist ? '' : '-outline'}}" ng-if="product && product.in_stock" ng-click="toWishlist(product)"></button>
+			
 		</div>
         <div class="cart-total ink" ui-sref="app.cart">
             <div ng-if="totalCartItem>0">
@@ -49,7 +49,7 @@
         <div ng-bind-html="product.description" class="padding"></div>
 	</ion-content>
 	<ion-footer-bar>
-        <button ng-if="product.variations.length>0" class="button button-calm" ng-click="addItem(product, 1)" ng-disabled="!product.option || !product.in_stock">{{product.in_stock ? $root.Dict.TXT_ADD_TO_CART : $root.Dict.TXT_SOLD}}</button>
-        <button ng-if="product.variations.length==0" class="button button-calm" ng-click="addItem(product, 1)" ng-disabled="!product.in_stock">{{$root.Dict.TXT_ADD_TO_CART}}</button>
+        <button ng-if="product.variations.length>0" class="button button-balanced" ng-click="addItem(product, 1)" ng-disabled="!product.option || !product.in_stock">{{product.in_stock ? $root.Dict.TXT_ADD_TO_CART : $root.Dict.TXT_SOLD}}</button>
+        <button ng-if="product.variations.length==0" class="button button-balanced" ng-click="addItem(product, 1)" ng-disabled="!product.in_stock">{{$root.Dict.TXT_ADD_TO_CART}}</button>
     </ion-footer-bar>
 </ion-view>

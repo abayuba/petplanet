@@ -230,7 +230,8 @@ ion-spinner.onload{
     display: block;
     padding: 10px;
     width: 100%;
-	background-color: #d778ae !important;
+	color: #ffffff;
+	background-color: #F80071 !important;
 }
 .menu .item-icon-left .icon {
     font-size: 1.5em;

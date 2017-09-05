@@ -4000,7 +4000,7 @@ a.subdued {
       background-image: linear-gradient(180deg, #6b46e5, #6b46e5 50%, transparent 50%); }
   .bar.bar-dark {
     border-color: #111;
-    background-color: #d778ae;
+    background-color: #F80071;
     background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);
     color: #b4dd84; }
     .bar.bar-dark .title {
@@ -6418,7 +6418,7 @@ button.item.item-button-right {
   padding-top: 8px;
   padding-bottom: 8px;
   min-height: 30px;
-  background-color: #d778ae!important;
+  background-color: #F80071 !important;
   color: #f4f9f5;
   font-weight: 500; }
 
@@ -8622,7 +8622,10 @@ progress {
     right: -6px;
     bottom: -6px;
     left: -6px;
-    content: ' '; }
+    content: ' ';
+	  
+
+   }
   .button .icon {
     vertical-align: top;
     pointer-events: none; }
@@ -9784,7 +9787,9 @@ a.button {
   -webkit-transition-timing-function: cubic-bezier(0.4, 0.6, 0.2, 1);
   transition-timing-function: cubic-bezier(0.4, 0.6, 0.2, 1);
   -webkit-transition-property: opacity;
-  transition-property: opacity; }
+  transition-property: opacity;
+color: azure !important;
+}
 
 [nav-bar-transition="android"] [nav-bar="active"],
 [nav-bar-transition="android"] [nav-bar="entering"] {

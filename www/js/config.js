@@ -1,31 +1,40 @@
 angular.module('app')
 
 .constant('Shop', {
-  version                             : '1.0.1',
-  name                                : 'Pet Planet Veterinaria',
+  version                             : '2.1.5 beta',
+  name                                : 'Petplanet Veterinaria',
   URL                                 : 'http://petplanet.aplicacionesmoviles.uy',
   EMAIL                               : 'abayuba1@gmail.com',
-  ConsumerKey                         : 'ck_508e5ae2dbcee53f15e8b686fcda05edc82ea467', // Get this from your WooCommerce
-  ConsumerSecret                      : 'cs_54c9af5ac9c41650baf9c132f852fdad955708cf', // Get this from your WooCommerce
+  ConsumerKey                         : 'ck_3057f12185a7a1cd380b09b8d97ceed6d30a7801', // Get this from your WooCommerce
+  ConsumerSecret                      : 'cs_58afc39b888e4c66203da1e7250d3a8dbf5f4bd8', // Get this from your WooCommerce
 
   homeSlider                          : true, // If you dont want to use home slider, set it to FALSE
   CurrencyFormat                      : true, // If you want to use currency format, set it to TRUE
-  shipping                         : [
-                                          {id: 'flat_rate:4', name: 'Debes dar click aquí para activar,Envío Gratuito.', cost: 0},
-                                          
-                                          
+  shipping                            : [
+                                          {id: 'flat_rate:4', name: 'Local Pickup', cost: 0},
+                                          {id: 'flat_rate:3', name: 'Flat Rate', cost: 5},
+                                          {id: 'flat_rate:2', name: 'Worldwide Flat Rate', cost: 15}
                                         ],
   payment                             : [
-                                          {id: 'cod', name: 'Paga cuando le entregan , click aquí', icon: 'fa fa-money', desc: 'Moneda pesos'},
-                                         
-                                          // Only for Indian currency (INR = Indian Rupee)
+                                          {id: 'cod', name: 'Cash on Delivery', icon: 'fa fa-money', desc: 'Pay with cash upon delivery.'},
+                                          {id: 'bacs', name: 'Direct Bank Transfer', icon: 'fa fa-university', desc: 'You can pay using direct bank account'},
+                                          {id: 'paypal', name: 'Paypal', icon: 'fa fa-cc-paypal', desc: 'You can pay via Paypal and Credit Card'},
+                                          {id: 'razor', name: 'RazorPay', icon: 'fa fa-money', desc: 'Pay with RazorPay for Indian region only'} // Only for Indian currency (INR = Indian Rupee)
                                         ],
-GCM_SenderID                        : '760671275981', // Get this from https://console.developers.google.com
-OneSignalAppID                      : 'c86f7c5d-05b7-4afb-9f9f-3528d97791c3', // Get this from https://onesignal.com
 
 
                                         // Change this Paypal Sandbox and LIVE with yours
- 
+  payPalSandboxClientID               : 'AZjyISbp1zmOhZ0o_iAG3W2IGjlz2hvEC-8cGoQ7fXcMFN9afaRuW0X1B1PVSgkSuTQWOKqM9N4NTkOP',
+  payPalLiveClientID                  : 'xxxxxxxxxxxx',
+  payPalEnv                           : 'PayPalEnvironmentSandbox', // to go live, use this: 'PayPalEnvironmentProduction'
+
+                                        // RazorPay only can be used for Indian currency (INR = Indian Rupee)
+                                        // If you want use LIVE, get your LIVE key from RazorPay Dashboard and use it here                                        
+  RazorKeyId                          : 'rzp_test_A5RTlFgqFuNdJU',  // Get this from https://dashboard.razorpay.com
+  RazorSecretKey                      : 'JE7YydcgwT8dPhIVEFr60pDj', // Get this from https://dashboard.razorpay.com
+  RazorYourLogoURL                    : 'https://goo.gl/ZwgRF9', // your logo image
+  RazorThemeColor                     : '#F37254', // Theme color for RazorPay
+  RazorYourShopDescription            : 'Ionic Premium WooCoommerce Full App for Android & iOS' // Your shop description
 })
 
 .constant('$ionicLoadingConfig', {

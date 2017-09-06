@@ -7,16 +7,16 @@ angular.module('app.controllers', [])
 
   $rootScope.Dict = Dict[Language.getLang()];
 
-    /* GET APP INFO */
+	/* GET APP INFO */
     $ionicLoading.show();
-    WC.api().get('', function(err, data, res){
-        //console.log(JSON.parse(res).store);
+	WC.api().get('', function(err, data, res){
+        console.log(JSON.parse(res).store);
         $scope.store   = JSON.parse(res).store;
         $scope.format  = Shop.CurrencyFormat ? $scope.store.meta.currency_format : $scope.store.meta.currency;
         $scope.decimal = $scope.store.meta.price_num_decimals;
     });
 
-    /* END APP INFO */
+	/* END APP INFO */
 
     /* RATE APP */
     $scope.rateApp = function(){
@@ -43,29 +43,29 @@ angular.module('app.controllers', [])
 
     /* END RATE APP */
 
-    /* GET CATEGORY & SUB CATEGORY */
-    var tmp = [];
-    WC.api().get('products/categories', function(err, data, res){
-        var p = JSON.parse(res).product_categories;
+	/* GET CATEGORY & SUB CATEGORY */
+	var tmp = [];
+	WC.api().get('products/categories', function(err, data, res){
+		var p = JSON.parse(res).product_categories;
         //console.log(p);
-        for(var i in p){
-            if(p[i].parent==0){
-                var items = [];
-                for(var y in p){
-                    if(p[y].parent==p[i].id)
-                        items.push({id: p[y].id, name: p[y].name, slug: p[y].slug, image: p[y].image, count: p[y].count});
-                }
-                tmp.push({id: p[i].id, name: p[i].name, slug: p[i].slug, image: p[i].image, items: items});
-            }
-        }
+		for(var i in p){
+		    if(p[i].parent==0){
+		        var items = [];
+		        for(var y in p){
+		            if(p[y].parent==p[i].id)
+		                items.push({id: p[y].id, name: p[y].name, slug: p[y].slug, image: p[y].image, count: p[y].count});
+		        }
+		        tmp.push({id: p[i].id, name: p[i].name, slug: p[i].slug, image: p[i].image, items: items});
+		    }
+		}
         $ionicLoading.hide();
-    })
+	})
 
-    $scope.categories = tmp;
+	$scope.categories = tmp;
 
-    /* END GET CATEGORY & SUB CATEGORY */
+	/* END GET CATEGORY & SUB CATEGORY */
 
-    $scope.updateCart = function(){
+	$scope.updateCart = function(){
         var cart = window.localStorage.getItem(Shop.name+"-cart") ? JSON.parse(window.localStorage.getItem(Shop.name+"-cart")) :'';
         if(cart.length>0){
             $scope.totalCartItem = 0;
@@ -74,13 +74,13 @@ angular.module('app.controllers', [])
         }else  $scope.totalCartItem = 0;
     };
 
-    $scope.user = {
-        id: AuthService.id(),
-        username: AuthService.username(),
-        email: AuthService.email(),
-        name: AuthService.name(),
-        isLogin: AuthService.isAuthenticated()
-    };
+	$scope.user = {
+		id: AuthService.id(),
+		username: AuthService.username(),
+		email: AuthService.email(),
+		name: AuthService.name(),
+		isLogin: AuthService.isAuthenticated()
+	};
 
     $scope.$on('$stateChangeSuccess', function() {
       $scope.updateCart();
@@ -138,30 +138,30 @@ angular.module('app.controllers', [])
           navigator.app.backHistory();
     },100);
 
-    $scope.toggleGroup = function(group) {
-        if ($scope.isGroupShown(group)) {
-          $scope.shownGroup = null;
-        } else {
-          $scope.shownGroup = group;
-        }
-    };
+	$scope.toggleGroup = function(group) {
+		if ($scope.isGroupShown(group)) {
+		  $scope.shownGroup = null;
+		} else {
+		  $scope.shownGroup = group;
+		}
+	};
 
-    $scope.isGroupShown = function(group) {
-        return $scope.shownGroup === group;
-    };
+	$scope.isGroupShown = function(group) {
+		return $scope.shownGroup === group;
+	};
 
-    ionic.material.ink.displayEffect();
+	ionic.material.ink.displayEffect();
 })
 
 .controller('HomeCtrl', function($scope, $timeout, $ionicSlideBoxDelegate, $ionicLoading, $ionicScrollDelegate, $rootScope, Dict, WC, Shop, Language, Data){
-    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+	$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = false;
     });
 
     $scope.more = false;
-    var page = 1;
+	var page = 1;
 
-    $ionicLoading.show();
+	$ionicLoading.show();
 
     if(Shop.homeSlider){
         Data.get('/api/slides.php')
@@ -175,29 +175,29 @@ angular.module('app.controllers', [])
 
     $scope.doRefresh = function(){
         page = 1;
-        WC.api().get('products?page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
-            if(err) console.log(err);
-            $scope.products = JSON.parse(res).products;
-            if(JSON.parse(res).products.length >= 10) $scope.more = true;
-            $ionicLoading.hide();
+    	WC.api().get('products?page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
+    		if(err) console.log(err);
+    		$scope.products = JSON.parse(res).products;
+    		if(JSON.parse(res).products.length >= 10) $scope.more = true;
+    		$ionicLoading.hide();
             $ionicScrollDelegate.resize();
             $scope.$broadcast('scroll.refreshComplete');
-        })
+    	})
     }
 
     $scope.doRefresh();
 
-    $scope.loadMore = function(){
-        page++;
-        WC.api().get('products?page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
+	$scope.loadMore = function(){
+		page++;
+		WC.api().get('products?page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
             $timeout(function(){
                 if(JSON.parse(res).products.length < 10)
                     $scope.more = false;
-               $scope.products = $scope.products.concat(JSON.parse(res).products);
-               $scope.$broadcast('scroll.infiniteScrollComplete');
+  			   $scope.products = $scope.products.concat(JSON.parse(res).products);
+  			   $scope.$broadcast('scroll.infiniteScrollComplete');
             });
-        })
-    }
+    	})
+	}
 
   ionic.material.ink.displayEffect();
 })
@@ -228,6 +228,10 @@ angular.module('app.controllers', [])
         }else
             return false;
     };
+
+    /*WC.api().get('products?fields=id,title', function(err, data, res){
+        $scope.dataSearch = JSON.parse(res).products;
+    });*/
 
     $scope.$watch('pro', function(newValue) {
       if(newValue) {
@@ -319,21 +323,21 @@ angular.module('app.controllers', [])
         viewData.enableBack = true;
     });
 
-    var id = $stateParams.id;
+	var id = $stateParams.id;
 
-    $ionicLoading.show();
+	$ionicLoading.show();
 
-    WC.api().get('products/'+id+'?fields=id,title,permalink,featured_src,attributes,description,images,on_sale,price,regular_price,in_stock,related_ids,sale_price,short_description,total_sales,variations', function(err, data, res){
-        if(err) console.log(err);
-        $timeout(function(){
+	WC.api().get('products/'+id+'?fields=id,title,permalink,featured_src,attributes,description,images,on_sale,price,regular_price,in_stock,related_ids,sale_price,short_description,total_sales,variations', function(err, data, res){
+		if(err) console.log(err);
+		$timeout(function(){
       $scope.product = JSON.parse(res).product;
       $ionicLoading.hide();
-        $ionicSlideBoxDelegate.update();
+  		$ionicSlideBoxDelegate.update();
     });
-    });
+	});
 
-    $scope.setVariation = function(x){
-        $scope.product.id = x.id;
+	$scope.setVariation = function(x){
+		$scope.product.id = x.id;
         $scope.product.price = x.price;
         $scope.product.regular_price = x.regular_price;
         $scope.product.on_sale = x.on_sale;
@@ -457,47 +461,47 @@ angular.module('app.controllers', [])
 })
 
 .controller('CategoryCtrl', function($scope, $timeout, $ionicLoading, $ionicScrollDelegate, $stateParams, WC){
-    $scope.more = false;
-    var page = 1;
-    var category = $stateParams.slug.replace("-", " ");
-    $scope.title = $stateParams.title;
+	$scope.more = false;
+	var page = 1;
+	var category = $stateParams.slug.replace("-", " ");
+	$scope.title = $stateParams.title;
 
-    $ionicLoading.show();
+	$ionicLoading.show();
     $scope.doRefresh = function(){
         page = 1;
-        WC.api().get('products?filter[category]='+category+'&page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
-            if(err) console.log(err);
-            //console.log(JSON.parse(res));
-            $scope.products = JSON.parse(res).products;
-            if(JSON.parse(res).products.length >= 10) $scope.more = true;
-            $ionicLoading.hide();
+    	WC.api().get('products?filter[category]='+category+'&page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
+    		if(err) console.log(err);
+    		//console.log(JSON.parse(res));
+    		$scope.products = JSON.parse(res).products;
+    		if(JSON.parse(res).products.length >= 10) $scope.more = true;
+    		$ionicLoading.hide();
             $ionicScrollDelegate.resize();
             $scope.$broadcast('scroll.refreshComplete');
-        })
+    	})
     }
 
     $scope.doRefresh();
 
-    $scope.loadMore = function(){
-        //$ionicLoading.show();
-        page++;
-        WC.api().get('products?filter[category]='+category+'&page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
-            //console.log(JSON.parse(res));
+	$scope.loadMore = function(){
+		//$ionicLoading.show();
+		page++;
+		WC.api().get('products?filter[category]='+category+'&page='+page+'&fields=id,title,price,regular_price,on_sale,in_stock,featured_src', function(err, data, res){
+			//console.log(JSON.parse(res));
       $timeout(function(){
-        if(JSON.parse(res).products.length < 10)
+      	if(JSON.parse(res).products.length < 10)
             $scope.more = false;
-            $scope.products = $scope.products.concat(JSON.parse(res).products);
-            $scope.$broadcast('scroll.infiniteScrollComplete');
+  			$scope.products = $scope.products.concat(JSON.parse(res).products);
+  			$scope.$broadcast('scroll.infiniteScrollComplete');
       });
-            //$ionicLoading.hide();
-        })
-    }
+			//$ionicLoading.hide();
+		})
+	}
 })
 
 .controller('CartCtrl', function($scope, $ionicModal, $ionicLoading, $state, AuthService, Shop){
-    $scope.cart = JSON.parse(window.localStorage.getItem(Shop.name+"-cart"));
+	$scope.cart = JSON.parse(window.localStorage.getItem(Shop.name+"-cart"));
 
-    $scope.data = {
+	$scope.data = {
         showDelete: false
     };
 
@@ -518,7 +522,7 @@ angular.module('app.controllers', [])
     };
 
     $scope.getCartItems = function(){
-        var tmp=0;
+    	var tmp=0;
         for(i in $scope.cart)
             tmp+=$scope.cart[i].qty;
         return tmp;
@@ -597,15 +601,13 @@ angular.module('app.controllers', [])
 
     $scope.billing = {
         phone: '',
-        email: '',
-		mod_estufa: ''
+        email: ''
     };
 
     $scope.tmp = {
         note: '',
         country: '',
-        coupon: '',
-		modelo: ''
+        coupon: ''
     };
 
     if($scope.user.isLogin){
@@ -1035,7 +1037,7 @@ angular.module('app.controllers', [])
     })
 })
 
-.controller('ConfirmCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $rootScope, Dict, WC, Shop, Paypal, Razor){
+.controller('ConfirmCtrl', function($scope, $state, $ionicLoading, $timeout, $http, $rootScope, PaypalService, Dict, WC, Shop, Razor){
     var order = JSON.parse(window.localStorage.getItem(Shop.name+"-order"));
     var cart = JSON.parse(window.localStorage.getItem(Shop.name+"-cart"));
     var line_items = [], subtotal = 0;
@@ -1102,84 +1104,23 @@ angular.module('app.controllers', [])
             var order = JSON.parse(res).order;
 
             if(order.payment_details.method_id=='paypal'){
-                var clientSecretID = Shop.payPalSandboxClientSecretBase64;
-                var getTokenURL    = Shop.payPalGetTokenURL;
-
-                Paypal.getToken(getTokenURL, clientSecretID).then(function(x){
-                    var data = {
-                          intent: "sale",
-                          redirect_urls: {
-                            return_url: 'http://localhost/success',
-                            cancel_url: 'http://localhost/cancel'
-                          },
-                          payer:{
-                            payment_method: "paypal"
-                          },
-                          transactions:[
-                            {
-                              amount:{
-                                total: order.total,
-                                currency: $scope.store.meta.currency
-                              }
-                            }
-                          ]
-                        };
-
-                    var makePaymentURL = Shop.payPalMakePaymentURL;
-                    Paypal.makePayment(makePaymentURL, data, x.access_token).then(function(y){
-                        var inAppBrowserRef  = undefined;
-                        if(y.state=="created"){
-                            var payerid;
-                            inAppBrowserRef = cordova.InAppBrowser.open(y.links[1].href, "_blank", "location=no&clearcache=yes&zoom=no&toolbar=no,status=no,titlebar=no");
-                            with (inAppBrowserRef) {
-                                addEventListener('loadstart', function(event) {
-                                  if(event.url.search('PayerID') != -1){
-                                      var data = event.url.split("&");
-                                      payerid = data[2].substring(8);
-                                      inAppBrowserRef.close();
-                                      Paypal.execute(y.links[2].href, payerid, x.access_token).then(function(z){
-                                          // PAYMENT SUCCESS
-                                          resetCache();
-
-                                          console.log(z);
-                                          // update order status to be "completed"
-                                          WC.api().put('orders/'+order.id, {order: {status: 'completed'}}, function(err, data, res){
-                                              $ionicLoading.hide();
-                                              $state.go('app.thanks', {id: order.id, total: order.total, payment: $scope.paymentmethod});
-                                          });
-                                      }, function(err){
-                                          payerid = '';
-                                          inAppBrowserRef.close();
-                                          $scope.showError($rootScope.Dict.TXT_CHECK_CONNECT);
-                                      });
-                                  }
-                                });
-                                addEventListener('exit', exitBrowser);
-                            }
-
-                            function exitBrowser(event){
-                              if(!payerid){
-                                WC.api().put('orders/'+order.id, {order: {status: 'cancelled'}}, function(err, data, res){
-                                  console.log(res);
-                                });
-                                $scope.showError("Your order #"+order.id+" has been cancelled.", 3000);
-                                $state.go("app.dash");
-                              }
-                            }
-
-                        }else{
-                            // PayPal Error
-                            WC.api().put('orders/'+order.id, {order: {status: 'cancelled'}}, function(err, data, res){
-                              $scope.showError("Your order #"+order.id+" has been cancelled.");
-                            });
-                        }
-                    }, function(err){
-                        $scope.showError($rootScope.Dict.TXT_CHECK_CONNECT);
+                PaypalService.initPaymentUI().then(function () {
+                    PaypalService.makePayment(order.total, "Total", $scope.store.meta.currency).then(function(x){
+                        console.log(x);
+                        resetCache();
+                        WC.api().put('orders/'+order.id, {order: {status: 'completed'}}, function(err, data, res){
+                            $ionicLoading.hide();
+                            $state.go('app.thanks', {id: order.id, total: order.total, payment: $scope.paymentmethod});
+                        });
+                    }, function(e){
+                        console.log(e);
+                        $scope.showError(e);
                     });
-
-                }, function(err){
-                    $scope.showError($rootScope.Dict.TXT_CHECK_CONNECT);
-                })
+                }, function(e){
+                    console.log(e);
+                    $scope.showError(e);
+                });
+                
             }else if(order.payment_details.method_id=='razor'){
                 var options = {
                   order_id      : order.id,
@@ -1230,6 +1171,7 @@ angular.module('app.controllers', [])
                 // PAYMENT SUCCESS
                 resetCache();
                 $ionicLoading.hide();
+                WC.api().put('orders/'+order.id, {order: {status: 'on-hold'}}, function(err, data, res){});
                 $state.go('app.thanks', {id: order.id, total: order.total, payment: $scope.paymentmethod});
             }
         })
